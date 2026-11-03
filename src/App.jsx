@@ -13,6 +13,7 @@ import {
   Volume2,
 } from "lucide-react";
 import "./App.css";
+import Startup from "./Startup";
 
 export default function App() {
   const [viewStart, setViewStart] = useState(0);
@@ -39,6 +40,11 @@ export default function App() {
   const playingRef = useRef(false);
   const offsetRef = useRef(0);
   const startedAtRef = useRef(0);
+  const [showStartup, setShowStartup] = useState(true);
+
+  const finishStartup = useCallback(() => {
+    setShowStartup(false);
+  }, []);
 
   const formatTime = (time) => {
     if (!Number.isFinite(time)) return "00:00.000";
@@ -578,7 +584,12 @@ const zoomOut = () => {
     };
   }, [stopAudio]);
 
+
+  if (showStartup) {
+    return <Startup onComplete={finishStartup} />;
+  }
   return (
+    
     <div className="app">
       <header className="header">
         <div className="brand">

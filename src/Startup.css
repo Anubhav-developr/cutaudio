@@ -1,0 +1,688 @@
+
+/* ===== AudioTrim Startup Screen ===== */
+
+.startup {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #0a0810;
+  font-family: "Space Grotesk", sans-serif;
+  animation: startup-appear 0.7s ease both;
+}
+
+.startup-exit {
+  animation: startup-disappear 0.65s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+/* Ambient lighting */
+
+.startup-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(130px);
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.glow-one {
+  background: #7c3aed;
+  top: -200px;
+  left: -100px;
+  animation: glow-float 6s ease-in-out infinite alternate;
+}
+
+.glow-two {
+  background: #4f46e5;
+  bottom: -250px;
+  right: -100px;
+  animation: glow-float 8s ease-in-out infinite alternate-reverse;
+}
+
+/* Equalizer background */
+
+.startup-equalizer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 3px;
+  padding: 0 5%;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+.equalizer-bar {
+  width: 3px;
+  max-height: 80%;
+  min-height: 8%;
+  background: #c4b5fd;
+  border-radius: 10px;
+  animation: equalizer-dance 0.8s ease-in-out infinite alternate;
+}
+
+/* Central content */
+
+.startup-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(440px, 90vw);
+  animation: content-reveal 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Logo */
+
+.startup-logo {
+  position: relative;
+  width: 94px;
+  height: 94px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 30px;
+}
+
+.startup-logo-inner {
+  position: relative;
+  z-index: 2;
+  width: 70px;
+  height: 70px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #a78bfa, #7c3aed 60%, #5b21b6);
+  box-shadow:
+    0 0 30px #8b5cf640,
+    0 0 80px #8b5cf620,
+    inset 0 1px 1px #ffffff50;
+  animation: logo-breathe 2s ease-in-out infinite;
+}
+
+.logo-orbit {
+  position: absolute;
+  inset: 0;
+  border: 1px solid #a78bfa30;
+  border-radius: 28px;
+}
+
+.orbit-one {
+  animation: orbit-pulse 2.5s ease-out infinite;
+}
+
+.orbit-two {
+  inset: -10px;
+  border-color: #a78bfa20;
+  animation: orbit-pulse 2.5s ease-out 0.8s infinite;
+}
+
+.logo-spark {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ddd6fe;
+  box-shadow: 0 0 12px #c4b5fd;
+}
+
+.spark-one {
+  top: 0;
+  right: 5px;
+  animation: spark-twinkle 1.5s ease infinite;
+}
+
+.spark-two {
+  bottom: 6px;
+  left: 2px;
+  animation: spark-twinkle 2s ease infinite reverse;
+}
+
+/* Brand */
+
+.startup-title {
+  text-align: center;
+}
+
+.startup-title h1 {
+  margin: 0;
+  color: #f5f3ff;
+  font-size: 46px;
+  font-weight: 700;
+  letter-spacing: -2.5px;
+}
+
+.startup-title h1 span {
+  color: #a78bfa;
+}
+
+.startup-subtitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  color: #8b7ca8;
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
+/* Animated waveform */
+
+.startup-wave {
+  width: 100%;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  margin-top: 48px;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.startup-wave-bar {
+  flex: 1;
+  min-width: 2px;
+  max-width: 4px;
+  border-radius: 5px;
+  background: linear-gradient(to top, #7c3aed, #c4b5fd);
+  transform: scaleY(0.15);
+  animation: wave-dance 0.65s ease-in-out infinite alternate;
+}
+
+/* Progress */
+
+.startup-loading {
+  width: 75%;
+  margin-top: 38px;
+}
+
+.loading-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  color: #77688f;
+  font-size: 9px;
+  letter-spacing: 1.6px;
+}
+
+.loading-percent {
+  color: #c4b5fd;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.loading-track {
+  height: 3px;
+  background: #251d32;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.loading-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #7c3aed, #c4b5fd);
+  box-shadow: 0 0 10px #8b5cf660;
+  transition: width 0.08s linear;
+}
+
+/* Footer */
+
+.startup-footer {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 32px;
+  color: #524661;
+  font-size: 8px;
+  letter-spacing: 1.8px;
+}
+
+/* Animations */
+
+@keyframes startup-appear {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes startup-disappear {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.04);
+    filter: blur(12px);
+  }
+}
+
+@keyframes content-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes logo-breathe {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 30px #8b5cf640, 0 0 80px #8b5cf620;
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 40px #8b5cf660, 0 0 100px #8b5cf630;
+  }
+}
+
+@keyframes orbit-pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes spark-twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.7); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+
+@keyframes wave-dance {
+  from { transform: scaleY(0.15); opacity: 0.5; }
+  to { transform: scaleY(1); opacity: 1; }
+}
+
+@keyframes equalizer-dance {
+  from { transform: scaleY(0.2); }
+  to { transform: scaleY(1); }
+}
+
+@keyframes glow-float {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(80px, 60px) scale(1.2); }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .startup *,
+  .startup *::before,
+  .startup *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ===== AudioTrim Startup Screen ===== */
+
+.startup {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #0a0810;
+  font-family: "Space Grotesk", sans-serif;
+  animation: startup-appear 0.7s ease both;
+}
+
+.startup-exit {
+  animation: startup-disappear 0.65s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+/* Ambient lighting */
+
+.startup-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(130px);
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.glow-one {
+  background: #7c3aed;
+  top: -200px;
+  left: -100px;
+  animation: glow-float 6s ease-in-out infinite alternate;
+}
+
+.glow-two {
+  background: #4f46e5;
+  bottom: -250px;
+  right: -100px;
+  animation: glow-float 8s ease-in-out infinite alternate-reverse;
+}
+
+/* Equalizer background */
+
+.startup-equalizer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 3px;
+  padding: 0 5%;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+.equalizer-bar {
+  width: 3px;
+  max-height: 80%;
+  min-height: 8%;
+  background: #c4b5fd;
+  border-radius: 10px;
+  animation: equalizer-dance 0.8s ease-in-out infinite alternate;
+}
+
+/* Central content */
+
+.startup-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(440px, 90vw);
+  animation: content-reveal 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Logo */
+
+.startup-logo {
+  position: relative;
+  width: 94px;
+  height: 94px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 30px;
+}
+
+.startup-logo-inner {
+  position: relative;
+  z-index: 2;
+  width: 70px;
+  height: 70px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #a78bfa, #7c3aed 60%, #5b21b6);
+  box-shadow:
+    0 0 30px #8b5cf640,
+    0 0 80px #8b5cf620,
+    inset 0 1px 1px #ffffff50;
+  animation: logo-breathe 2s ease-in-out infinite;
+}
+
+.logo-orbit {
+  position: absolute;
+  inset: 0;
+  border: 1px solid #a78bfa30;
+  border-radius: 28px;
+}
+
+.orbit-one {
+  animation: orbit-pulse 2.5s ease-out infinite;
+}
+
+.orbit-two {
+  inset: -10px;
+  border-color: #a78bfa20;
+  animation: orbit-pulse 2.5s ease-out 0.8s infinite;
+}
+
+.logo-spark {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ddd6fe;
+  box-shadow: 0 0 12px #c4b5fd;
+}
+
+.spark-one {
+  top: 0;
+  right: 5px;
+  animation: spark-twinkle 1.5s ease infinite;
+}
+
+.spark-two {
+  bottom: 6px;
+  left: 2px;
+  animation: spark-twinkle 2s ease infinite reverse;
+}
+
+/* Brand */
+
+.startup-title {
+  text-align: center;
+}
+
+.startup-title h1 {
+  margin: 0;
+  color: #f5f3ff;
+  font-size: 46px;
+  font-weight: 700;
+  letter-spacing: -2.5px;
+}
+
+.startup-title h1 span {
+  color: #a78bfa;
+}
+
+.startup-subtitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  color: #8b7ca8;
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
+/* Animated waveform */
+
+.startup-wave {
+  width: 100%;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  margin-top: 48px;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.startup-wave-bar {
+  flex: 1;
+  min-width: 2px;
+  max-width: 4px;
+  border-radius: 5px;
+  background: linear-gradient(to top, #7c3aed, #c4b5fd);
+  transform: scaleY(0.15);
+  animation: wave-dance 0.65s ease-in-out infinite alternate;
+}
+
+/* Progress */
+
+.startup-loading {
+  width: 75%;
+  margin-top: 38px;
+}
+
+.loading-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  color: #77688f;
+  font-size: 9px;
+  letter-spacing: 1.6px;
+}
+
+.loading-percent {
+  color: #c4b5fd;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.loading-track {
+  height: 3px;
+  background: #251d32;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.loading-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #7c3aed, #c4b5fd);
+  box-shadow: 0 0 10px #8b5cf660;
+  transition: width 0.08s linear;
+}
+
+/* Footer */
+
+.startup-footer {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 32px;
+  color: #524661;
+  font-size: 8px;
+  letter-spacing: 1.8px;
+}
+
+/* Animations */
+
+@keyframes startup-appear {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes startup-disappear {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.04);
+    filter: blur(12px);
+  }
+}
+
+@keyframes content-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes logo-breathe {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 30px #8b5cf640, 0 0 80px #8b5cf620;
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 40px #8b5cf660, 0 0 100px #8b5cf630;
+  }
+}
+
+@keyframes orbit-pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes spark-twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.7); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+
+@keyframes wave-dance {
+  from { transform: scaleY(0.15); opacity: 0.5; }
+  to { transform: scaleY(1); opacity: 1; }
+}
+
+@keyframes equalizer-dance {
+  from { transform: scaleY(0.2); }
+  to { transform: scaleY(1); }
+}
+
+@keyframes glow-float {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(80px, 60px) scale(1.2); }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .startup *,
+  .startup *::before,
+  .startup *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
