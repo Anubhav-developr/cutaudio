@@ -58,8 +58,19 @@ button {
   border-radius: 11px;
   display: grid;
   place-items: center;
-  color: white;
-  background: #8b5cf6;
+  background: transparent;
+  transition: transform 180ms ease, filter 180ms ease;
+}
+
+.logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.brand:hover .logo {
+  transform: translateY(-1px);
+  filter: drop-shadow(0 0 8px #9b72ff55);
 }
 
 .brand-accent {

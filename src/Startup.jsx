@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Scissors, AudioLines } from "lucide-react";
+import { AudioLines } from "lucide-react";
 import "./Startup.css";
 
 export default function Startup({ onComplete }) {
@@ -62,7 +62,7 @@ export default function Startup({ onComplete }) {
           <div className="logo-orbit orbit-two" />
 
           <div className="startup-logo-inner">
-            <Scissors size={36} strokeWidth={1.7} />
+            <img src="/icon.svg" alt="AudioTrim" />
           </div>
 
           <div className="logo-spark spark-one" />

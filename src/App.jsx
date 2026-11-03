@@ -594,7 +594,7 @@ const zoomOut = () => {
       <header className="header">
         <div className="brand">
           <div className="logo">
-            <Scissors size={22} />
+            <img src="/icon.svg" alt="" />
           </div>
           <span>
             Audio<span className="brand-accent">Trim</span>
